@@ -40,7 +40,7 @@ public class Health : MonoBehaviour
     {
         health += ammount;
 
-        health = Mathf.Clamp(health, 1, StartingHealth);
+        health = Mathf.Clamp(health, 0, StartingHealth);
     }
 
     public void ResetHealth()
@@ -57,8 +57,18 @@ public class Health : MonoBehaviour
     {
         float healthRatio = health / StartingHealth;
 
-        HealthText.text = (healthRatio*100) + "%";
+        if (HealthText != null)
+        {
+            HealthText.text = (healthRatio * 100) + "%";
+        }
+        
 
-        HealthSlider.value = healthRatio;
+        if (HealthSlider != null)
+        {
+            HealthSlider.value = healthRatio;
+        }
+        
+
+        
     }
 }

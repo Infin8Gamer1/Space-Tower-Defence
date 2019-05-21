@@ -28,30 +28,6 @@ public class GazeGestureManager : MonoBehaviour {
             }
         };
 
-        /*recognizer.HoldStarted += (args) =>
-        {
-            if (FocusedObject != null)
-            {
-                FocusedObject.SendMessageUpwards("OnHoldStarted", args, SendMessageOptions.DontRequireReceiver);
-            }
-        };
-
-        recognizer.HoldCompleted += (args) =>
-        {
-            if (FocusedObject != null)
-            {
-                FocusedObject.SendMessageUpwards("OnHoldCompleted", args, SendMessageOptions.DontRequireReceiver);
-            }
-        };
-
-        recognizer.HoldCanceled += (args) =>
-        {
-            if (FocusedObject != null)
-            {
-                FocusedObject.SendMessageUpwards("OnHoldCanceled", args, SendMessageOptions.DontRequireReceiver);
-            }
-        };*/
-
         recognizer.StartCapturingGestures();
 
 

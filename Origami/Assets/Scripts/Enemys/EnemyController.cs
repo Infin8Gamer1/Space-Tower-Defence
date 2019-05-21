@@ -6,7 +6,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyController : MonoBehaviour
 {
-    public GameObject Target;
+    private GameObject Target;
 
     private NavMeshAgent agent;
 
@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
 
-        Target = GameObject.FindGameObjectWithTag("Target");
+        Target = GameManager.Instance.HomebaseRef;
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour
                 agent.destination = Target.transform.position;
             } else
             {
-                Target = GameObject.FindGameObjectWithTag("Target");
+                Target = GameManager.Instance.HomebaseRef;
             }
         }
     }

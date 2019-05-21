@@ -12,13 +12,13 @@ public class TapToBuyItem : MonoBehaviour
     [Header("Price")]
     public int cost;
     public TextMeshPro PriceText;
-    public BankManager Bank;
+    public ScoreManager Bank;
 
     // Called by GazeGestureManager when the user performs a Select gesture
     void OnSelect(TappedEventArgs args)
     {
         //withdraw money from account (if it doesn't bounce then continue)
-        if (Bank.WitdrawMoney(cost))
+        if (/*Bank.WitdrawMoney(cost)*/true)
         {
             //Spawn object
             GameObject obj = Instantiate(ItemPrefab);

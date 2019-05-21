@@ -24,7 +24,7 @@ public class TapToPlace : MonoBehaviour
     }
 
     // Called by GazeGestureManager when the user performs a Select gesture
-    void OnSelect(TappedEventArgs args)
+    void OnSelect()
     {
         if (holding)
         {
