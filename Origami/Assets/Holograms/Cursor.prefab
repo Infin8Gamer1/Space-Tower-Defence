@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultDistance: 1.5
+  SourceDetectedScale: {x: 1, y: 1, z: 1}
 --- !u!1 &162588
 GameObject:
   m_ObjectHideFlags: 0

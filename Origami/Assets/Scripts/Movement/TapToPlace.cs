@@ -13,12 +13,17 @@ public class TapToPlace : MonoBehaviour
     [Range(0.4f, 3.5f)]
     public float distance = 2.5f;
 
+    [HideInInspector]
+    public bool Placed { get; private set; }
+
     // Bit shift the index of the layer (8) to get a bit mask
     int layerMask = 1 << 8;
 
     public void Place()
     {
         holding = true;
+
+        Placed = false;
 
         GetComponent<MeshRenderer>().material = MovingMaterial;
     }
@@ -31,6 +36,8 @@ public class TapToPlace : MonoBehaviour
             GetComponent<MeshRenderer>().material = DefaultMaterial;
 
             holding = false;
+
+            Placed = true;
         }
     }
 

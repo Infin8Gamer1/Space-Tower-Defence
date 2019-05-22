@@ -29,8 +29,13 @@ public class ShootManager : MonoBehaviour
     {
         /*if (shootCooldown < Time.deltaTime)
         {*/
-            //just spawn the bullet (the bullet script on the bullet will take care of getting it up to speed)
-            GameObject bullet = Instantiate(BulletPrefab, Camera.main.transform.position, Camera.main.transform.rotation);
+        Vector3 headPosition = Camera.main.transform.position;
+        Vector3 gazeDirection = Camera.main.transform.forward;
+
+        Vector3 SpawnPosition = (gazeDirection * 0.3f) + headPosition;
+
+        //just spawn the bullet (the bullet script on the bullet will take care of getting it up to speed)
+        GameObject bullet = Instantiate(BulletPrefab, SpawnPosition, Camera.main.transform.rotation);
 
             /*// Reset cooldown
             shootCooldown = ShootingRate;
