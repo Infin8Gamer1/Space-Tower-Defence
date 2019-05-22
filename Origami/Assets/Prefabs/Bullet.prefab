@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8545707134265853055}
   - component: {fileID: 8545707134265853054}
   - component: {fileID: 8545707134265853041}
-  - component: {fileID: 8545707134265853040}
+  - component: {fileID: 5485517439028958708}
   - component: {fileID: 8545707134265853043}
   - component: {fileID: 8545707134265853052}
   m_Layer: 0
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8545707134265853042}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &8545707134265853041
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -80,8 +80,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &8545707134265853040
-CapsuleCollider:
+--- !u!135 &5485517439028958708
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,9 +90,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8545707134265853043
 Rigidbody:
@@ -123,6 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyTime: 20
-  Speed: 20
+  Speed: 35
   Damage: 100
   BulletCollisionParticleSystem: {fileID: 0}

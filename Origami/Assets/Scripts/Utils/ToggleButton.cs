@@ -41,7 +41,7 @@ public class ToggleButton : MonoBehaviour
         }
     }
 
-    void OnSelect(TappedEventArgs args)
+    void OnSelect()
     {
         state = !state;
 

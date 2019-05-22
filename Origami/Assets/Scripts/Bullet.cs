@@ -17,20 +17,31 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(this, DestroyTime);
+        //Destroy(this, DestroyTime);
+        StartCoroutine(Delete());
 
         //Assuming that the bullet is put in the correct orentation apon getting spawned
         GetComponent<Rigidbody>().AddForce(transform.forward * Speed);
     }
 
+    IEnumerator Delete()
+    {
+        yield return new WaitForSeconds(DestroyTime);
+
+        Destroy(gameObject);
+    }
+
     void OnCollisionEnter(Collision collision)
     {
-        Health otherHealth = collision.transform.gameObject.GetComponent<Health>();
-
-        //remove health from enemy
-        if (otherHealth != null)
+        if (collision.gameObject.name != "HomeBase")
         {
-            otherHealth.RemoveHealth(Damage);
+            Health otherHealth = collision.gameObject.GetComponent<Health>();
+
+            //remove health from enemy
+            if (otherHealth != null)
+            {
+                otherHealth.RemoveHealth(Damage);
+            }
         }
 
         //spawn particle system
@@ -40,7 +51,7 @@ public class Bullet : MonoBehaviour
         }
 
         //destroy this bullet
-        Destroy(this);
+        Destroy(gameObject);
     }
 
     // Update is called once per frame

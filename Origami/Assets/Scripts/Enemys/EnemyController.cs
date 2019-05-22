@@ -6,6 +6,10 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyController : MonoBehaviour
 {
+    public int DamageToBase = 50;
+
+    public GameObject ExplosionPrefab;
+
     private GameObject Target;
 
     private NavMeshAgent agent;
@@ -16,6 +20,23 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         Target = GameManager.Instance.HomebaseRef;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "HomeBase")
+        {
+            Health otherHealth = collision.gameObject.GetComponent<Health>();
+
+            otherHealth.RemoveHealth(DamageToBase);
+
+            if (ExplosionPrefab != null)
+            {
+                Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
+            }
+
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame

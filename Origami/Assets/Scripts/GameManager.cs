@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
 
-        //Spawn object
+        //Spawn homebase
         HomebaseRef = Instantiate(HomebasePrefab);
 
         //put homebase in place mode (moves it on raycast)
