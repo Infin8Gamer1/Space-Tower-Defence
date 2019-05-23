@@ -235,7 +235,7 @@ MonoBehaviour:
   HomebasePrefab: {fileID: 4297506048185339923, guid: 095abc229302831498d70ae60a86508d,
     type: 3}
   HomebaseRef: {fileID: 0}
-  PortalDistance: 2
+  PortalDistance: 1.5
   PortalPrefab: {fileID: 4531069000073101123, guid: 45297e76a181e2248a4989d6438d00ef,
     type: 3}
   PortalRef: {fileID: 0}
