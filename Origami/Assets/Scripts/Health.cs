@@ -55,11 +55,11 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        float healthRatio = health / StartingHealth;
+        float healthRatio = (float)(health) / (float)(StartingHealth);
 
         if (HealthText != null)
         {
-            HealthText.text = (healthRatio * 100) + "%";
+            HealthText.text = (healthRatio * 100.0f) + "%";
         }
         
 
@@ -67,8 +67,5 @@ public class Health : MonoBehaviour
         {
             HealthSlider.value = healthRatio;
         }
-        
-
-        
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7759397707405552955}
   - component: {fileID: 621236063721324875}
   - component: {fileID: 1130225465054355561}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RemoveHealthButton
   m_TagString: DontShootWhenTaped
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 4297506047339327994}
   - component: {fileID: 4297506047339327993}
   - component: {fileID: 4297506047339327972}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AddHealthButton
   m_TagString: DontShootWhenTaped
   m_Icon: {fileID: 0}
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 4297506047389605595}
   - component: {fileID: 4297506047389605594}
   - component: {fileID: 4297506047389605593}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +381,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4297506047556415310}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4297506047941399582}
   - component: {fileID: 4297506047941399583}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +506,7 @@ GameObject:
   - component: {fileID: 4297506048010302968}
   - component: {fileID: 4297506048010302970}
   - component: {fileID: 4297506048010302969}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Health Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 4297506048065111230}
   - component: {fileID: 4297506048065111231}
   - component: {fileID: 4297506048065111224}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UI BASE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -736,9 +736,9 @@ GameObject:
   - component: {fileID: 4297506048185339932}
   - component: {fileID: 4297506048185339928}
   - component: {fileID: 2606826281147659443}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HomeBase
-  m_TagString: DontShootWhenTaped
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -865,7 +865,7 @@ GameObject:
   - component: {fileID: 4297506048296419298}
   - component: {fileID: 4297506048296419297}
   - component: {fileID: 4297506048296419296}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1070,7 +1070,7 @@ GameObject:
   - component: {fileID: 4297506048380807253}
   - component: {fileID: 4297506048380807255}
   - component: {fileID: 4297506048380807254}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1146,7 +1146,7 @@ GameObject:
   - component: {fileID: 4297506048828607016}
   - component: {fileID: 4297506048828607023}
   - component: {fileID: 4297506048828607022}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Score Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1351,7 +1351,7 @@ GameObject:
   - component: {fileID: 4297506048987345223}
   - component: {fileID: 4297506048987345217}
   - component: {fileID: 4297506048987345216}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1427,7 +1427,7 @@ GameObject:
   - component: {fileID: 3016716557565038456}
   - component: {fileID: 7235843991725112542}
   - component: {fileID: 4417692815940705067}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}

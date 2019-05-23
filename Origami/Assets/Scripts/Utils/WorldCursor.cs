@@ -13,6 +13,8 @@ public class WorldCursor : MonoBehaviour {
     public Vector3 SourceDetectedScale = new Vector3(1,1,1);
     private Vector3 SourceLostScale;
 
+    public LayerMask mask;
+
 
     // Use this for initialization
     void Start () {
@@ -40,7 +42,7 @@ public class WorldCursor : MonoBehaviour {
 
         RaycastHit hitInfo;
 
-        if (Physics.Raycast(headPosition, gazeDirection, out hitInfo))
+        if (Physics.Raycast(headPosition, gazeDirection, out hitInfo, 25.0f, mask.value))
         {
             if (Vector3.Distance(hitInfo.point, headPosition) <= defaultDistance)
             {
@@ -53,7 +55,6 @@ public class WorldCursor : MonoBehaviour {
 
                 transform.rotation = Quaternion.FromToRotation(Vector3.up, gazeDirection);
             }
-            
         }
         else
         {

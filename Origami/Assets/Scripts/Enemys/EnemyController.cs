@@ -53,4 +53,9 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
+
+    void OnDestroy()
+    {
+        GameManager.Instance.EnemyDied();
+    }
 }

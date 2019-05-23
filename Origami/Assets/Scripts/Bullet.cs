@@ -33,7 +33,7 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name != "HomeBase")
+        if (collision.gameObject.layer != LayerMask.NameToLayer("HomeBase"))
         {
             Health otherHealth = collision.gameObject.GetComponent<Health>();
 

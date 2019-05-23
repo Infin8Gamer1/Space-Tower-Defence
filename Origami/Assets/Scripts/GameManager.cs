@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    
-
     public GameObject HomebasePrefab;
 
     [HideInInspector]
@@ -94,5 +92,10 @@ public class GameManager : MonoBehaviour
 
         //Spawn Portal
         PortalRef = Instantiate(PortalPrefab, selectedPoint, Quaternion.identity);
+    }
+
+    public void EnemyDied()
+    {
+        PortalRef.GetComponent<EnemySpawner>().EnemyKilled();
     }
 }

@@ -19,7 +19,7 @@ public class ShootManager : MonoBehaviour
 
     void OnSelect()
     {
-        if (GazeManager.Instance.FocusedObject.tag != "DontShootWhenTaped")
+        if (GazeManager.Instance.FocusedObject == null || GazeManager.Instance.FocusedObject.tag != "DontShootWhenTaped")
         {
             Shoot();
         }
@@ -32,7 +32,7 @@ public class ShootManager : MonoBehaviour
         Vector3 headPosition = Camera.main.transform.position;
         Vector3 gazeDirection = Camera.main.transform.forward;
 
-        Vector3 SpawnPosition = (gazeDirection * 0.3f) + headPosition;
+        Vector3 SpawnPosition = (gazeDirection * 0.6f) + headPosition;
 
         //just spawn the bullet (the bullet script on the bullet will take care of getting it up to speed)
         GameObject bullet = Instantiate(BulletPrefab, SpawnPosition, Camera.main.transform.rotation);
