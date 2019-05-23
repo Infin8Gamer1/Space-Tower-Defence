@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         {
             NavMeshHit navMeshHit;
 
-            if (NavMesh.SamplePosition(x, out navMeshHit, 0.5f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(x, out navMeshHit, 0.35f, NavMesh.AllAreas))
             {
                 RealPoints.Add(navMeshHit.position);
             }
@@ -93,6 +93,6 @@ public class GameManager : MonoBehaviour
         Vector3 selectedPoint = RealPoints[pointIndex];
 
         //Spawn Portal
-        PortalRef = Instantiate(PortalRef, selectedPoint, Quaternion.identity);
+        PortalRef = Instantiate(PortalPrefab, selectedPoint, Quaternion.identity);
     }
 }
