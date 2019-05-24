@@ -10,6 +10,8 @@ public class EnemyController : MonoBehaviour
 
     public GameObject ExplosionPrefab;
 
+    public GameObject DeathParticles;
+
     private GameObject Target;
 
     private NavMeshAgent agent;
@@ -57,5 +59,6 @@ public class EnemyController : MonoBehaviour
     void OnDestroy()
     {
         GameManager.Instance.EnemyDied();
+        Instantiate(DeathParticles, transform.position, Quaternion.identity);
     }
 }
