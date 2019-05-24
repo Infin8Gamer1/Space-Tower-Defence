@@ -7,6 +7,8 @@ public class TapToPlace : MonoBehaviour
 {
     private bool holding = false;
 
+    public MeshRenderer meshRenderer;
+
     public Material DefaultMaterial;
     public Material MovingMaterial;
 
@@ -19,13 +21,35 @@ public class TapToPlace : MonoBehaviour
     // Bit shift the index of the layer (8) to get a bit mask
     int layerMask = 1 << 8;
 
+    void Start()
+    {
+        if (DefaultMaterial == null)
+        {
+            if (meshRenderer == null)
+            {
+                DefaultMaterial = GetComponent<MeshRenderer>().material;
+            }
+            else
+            {
+                DefaultMaterial = meshRenderer.material;
+            }
+        }
+    }
+
     public void Place()
     {
         holding = true;
 
         Placed = false;
 
-        GetComponent<MeshRenderer>().material = MovingMaterial;
+        if (meshRenderer == null)
+        {
+            GetComponent<MeshRenderer>().material = MovingMaterial;
+        } else
+        {
+            meshRenderer.material = MovingMaterial;
+        }
+        
     }
 
     // Called by GazeGestureManager when the user performs a Select gesture
@@ -33,7 +57,14 @@ public class TapToPlace : MonoBehaviour
     {
         if (holding)
         {
-            GetComponent<MeshRenderer>().material = DefaultMaterial;
+            if (meshRenderer == null)
+            {
+                GetComponent<MeshRenderer>().material = DefaultMaterial;
+            }
+            else
+            {
+                meshRenderer.material = DefaultMaterial;
+            }
 
             holding = false;
 
