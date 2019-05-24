@@ -133,18 +133,7 @@ MonoBehaviour:
   DeathDelay: 0.1
   DeathEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   HealthText: {fileID: 0}
@@ -162,4 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageToBase: 50
-  ExplosionPrefab: {fileID: 0}
+  ExplosionPrefab: {fileID: 3355562330902873701, guid: cb301c2787bba03479a8c10bca5d5c70,
+    type: 3}
+  DeathParticles: {fileID: 3355562330902873701, guid: cb301c2787bba03479a8c10bca5d5c70,
+    type: 3}

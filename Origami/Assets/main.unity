@@ -241,6 +241,7 @@ MonoBehaviour:
   PortalPrefab: {fileID: 4531069000073101123, guid: 45297e76a181e2248a4989d6438d00ef,
     type: 3}
   PortalRef: {fileID: 0}
+  SpatialMapingRef: {fileID: 1531427443}
 --- !u!114 &1057939181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,6 +561,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87596db941ad3bf45a16b586b6e28b5c, type: 3}
+--- !u!1 &1531427443 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1000012674329276, guid: 87596db941ad3bf45a16b586b6e28b5c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1429008378}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1737717052
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -24,20 +24,22 @@ public class EnemyController : MonoBehaviour
         Target = GameManager.Instance.HomebaseRef;
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.name == "HomeBase")
+        if (other.gameObject.layer == LayerMask.NameToLayer("HomeBase"))
         {
-            Health otherHealth = collision.gameObject.GetComponent<Health>();
-
-            otherHealth.RemoveHealth(DamageToBase);
+            Health otherHealth = other.gameObject.GetComponent<Health>();
+            if (otherHealth != null)
+            {
+                otherHealth.RemoveHealth(DamageToBase);
+            }
 
             if (ExplosionPrefab != null)
             {
                 Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
             }
 
-            Destroy(gameObject);
+            Destroy(this);
         }
     }
 
@@ -59,6 +61,6 @@ public class EnemyController : MonoBehaviour
     void OnDestroy()
     {
         GameManager.Instance.EnemyDied();
-        Instantiate(DeathParticles, transform.position, Quaternion.identity);
+        //Instantiate(DeathParticles, transform.position, Quaternion.identity);
     }
 }

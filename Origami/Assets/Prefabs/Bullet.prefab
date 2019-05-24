@@ -122,6 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyTime: 20
-  Speed: 75
+  Speed: 100
   Damage: 100
   BulletCollisionParticleSystem: {fileID: 0}

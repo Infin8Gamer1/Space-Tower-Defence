@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public GameObject PortalRef;
 
+    public GameObject SpatialMapingRef;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,8 +50,17 @@ public class GameManager : MonoBehaviour
                 HomebasePlaced = true;
 
                 PlacePortal();
+
+                StartCoroutine(DisableNavCalculations());
             }
         }
+    }
+
+    IEnumerator DisableNavCalculations()
+    {
+        yield return new WaitForSeconds(15.0f);
+
+        SpatialMapingRef.GetComponent<NavigationBaker>().enableCalculations = false;
     }
 
     void PlacePortal()

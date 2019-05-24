@@ -7,6 +7,8 @@ public class NavigationBaker : MonoBehaviour
 {
     public NavMeshSurface[] surfaces;
 
+    public bool enableCalculations = true;
+
     void Start()
     {
         for (int i = 0; i < surfaces.Length; i++)
@@ -20,7 +22,7 @@ public class NavigationBaker : MonoBehaviour
     IEnumerator UpdateLoop()
     {
         var wait = new WaitForSeconds(5f);
-        while (true)
+        while (enableCalculations)
         {
             for (int i = 0; i < surfaces.Length; i++)
             {
