@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class ShootManager : MonoBehaviour
 {
     public GameObject BulletPrefab;
+
+    public AudioClip ShootSound;
 
     /*public float ShootingRate = 0.25f;
     private float shootCooldown;*/
@@ -36,6 +39,12 @@ public class ShootManager : MonoBehaviour
 
         //just spawn the bullet (the bullet script on the bullet will take care of getting it up to speed)
         GameObject bullet = Instantiate(BulletPrefab, SpawnPosition, Camera.main.transform.rotation);
+
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.clip = ShootSound;
+
+        audioSource.Play();
+
 
             /*// Reset cooldown
             shootCooldown = ShootingRate;
