@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     private bool HomebasePlaced = false;
 
     [Range(0.3f,3f)]
-    public float PortalDistance = 2f;
+    public float DesiredPortalDistance = 2f;
 
     public GameObject PortalPrefab;
 
@@ -63,7 +63,39 @@ public class GameManager : MonoBehaviour
         SpatialMapingRef.GetComponent<NavigationBaker>().enableCalculations = false;
     }
 
-    void PlacePortal()
+    private void PlacePortal()
+    {
+        List<Vector3> points = new List<Vector3>();
+
+        //loop until at least one point is found
+        float adjustment = 0f;
+        while (points.Count == 0)
+        {
+            points = GetPossiblePortalSpawnPoints(DesiredPortalDistance + adjustment);
+
+            if (points.Count == 0)
+            {
+                adjustment -= 0.3f;
+            }
+        } 
+
+        int pointIndex = Random.Range(0, points.Count - 1);
+
+        Vector3 selectedPoint = points[pointIndex];
+
+        //Spawn Portal
+        PortalRef = Instantiate(PortalPrefab, selectedPoint, Quaternion.identity);
+
+        /*//set the portal rotation to be looking at the home base
+        Quaternion targetRotation = Quaternion.LookRotation(HomebaseRef.transform.position - PortalRef.transform.position);
+
+        targetRotation.x = 0;
+        targetRotation.z = 0;
+
+        PortalRef.transform.rotation = targetRotation;*/
+    }
+
+    private List<Vector3> GetPossiblePortalSpawnPoints(float portalDistance)
     {
         //create an array of potential points
         List<Vector3> PotentialPoints = new List<Vector3>();
@@ -79,7 +111,7 @@ public class GameManager : MonoBehaviour
             //calculate the direction vector
             Vector3 pointDirection = new Vector3(Mathf.Cos(angle), 0.0f, Mathf.Sin(angle));
 
-            Vector3 point = (pointDirection * PortalDistance) + HomebaseRef.transform.position;
+            Vector3 point = (pointDirection * portalDistance) + HomebaseRef.transform.position;
 
             PotentialPoints.Add(point);
         }
@@ -97,12 +129,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        int pointIndex = Random.Range(0, RealPoints.Count - 1);
-
-        Vector3 selectedPoint = RealPoints[pointIndex];
-
-        //Spawn Portal
-        PortalRef = Instantiate(PortalPrefab, selectedPoint, Quaternion.identity);
+        return RealPoints;
     }
 
     public void EnemyDied()

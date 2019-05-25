@@ -39,7 +39,7 @@ public class EnemyController : MonoBehaviour
                 Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
             }
 
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 
