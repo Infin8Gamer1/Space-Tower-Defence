@@ -15,7 +15,6 @@ public class WorldCursor : MonoBehaviour {
 
     public LayerMask mask;
 
-
     // Use this for initialization
     void Start () {
         meshRenderer = gameObject.GetComponentInChildren<MeshRenderer>();

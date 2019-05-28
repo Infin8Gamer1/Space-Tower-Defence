@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.XR.WSA;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+
+    private bool loading = true;
+    public GameObject LoadingBillboardPrefab;
+    private GameObject LoadingBillboardRef;
 
     public GameObject HomebasePrefab;
 
@@ -31,27 +36,49 @@ public class GameManager : MonoBehaviour
 
         HomebasePlaced = false;
 
-        //Spawn homebase
-        HomebaseRef = Instantiate(HomebasePrefab);
+        loading = true;
 
-        HomebaseRef.GetComponentInChildren<RotateToFaceObject>().target = Camera.main.gameObject.transform;
-
-        //put homebase in place mode (moves it on raycast)
-        HomebaseRef.GetComponent<TapToPlace>().Place();
+        LoadingBillboardRef = Instantiate(LoadingBillboardPrefab);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (HomebasePlaced == false)
+        //Debug.Log("Navmesh Size : " + SpatialMapingRef.GetComponent<NavMeshSurface>().size);
+
+        if (loading == false)
         {
-            if (HomebaseRef.GetComponent<TapToPlace>().Placed)
+            if (HomebaseRef == null)
             {
-                HomebasePlaced = true;
+                //Spawn homebase
+                HomebaseRef = Instantiate(HomebasePrefab);
 
-                PlacePortal();
+                HomebaseRef.GetComponentInChildren<RotateToFaceObject>().target = Camera.main.gameObject.transform;
 
-                StartCoroutine(DisableNavCalculations());
+                //put homebase in place mode (moves it on raycast)
+                HomebaseRef.GetComponent<TapToPlace>().Place();
+            }
+
+            if (HomebasePlaced == false)
+            {
+                if (HomebaseRef.GetComponent<TapToPlace>().Placed)
+                {
+                    HomebasePlaced = true;
+
+                    PlacePortal();
+
+                    StartCoroutine(DisableNavCalculations());
+                }
+            }
+        } else
+        {
+            
+            if (SpatialMapingRef.transform.childCount > 0)
+            {
+                loading = false;
+
+                Destroy(LoadingBillboardRef);
+                LoadingBillboardRef = null;
             }
         }
     }
@@ -61,6 +88,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(15.0f);
 
         SpatialMapingRef.GetComponent<NavigationBaker>().enableCalculations = false;
+
+        SpatialMapingRef.GetComponent<SpatialMappingCollider>().freezeUpdates = true;
+        SpatialMapingRef.GetComponent<SpatialMappingRenderer>().freezeUpdates = true;
     }
 
     private void PlacePortal()
@@ -135,5 +165,17 @@ public class GameManager : MonoBehaviour
     public void EnemyDied()
     {
         PortalRef.GetComponent<EnemySpawner>().EnemyKilled();
+    }
+
+    bool IsGreaterOrEqual(Vector3 a, Vector3 b)
+    {
+        if (a.x >= b.x && a.y >= b.y && a.z >= b.z)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

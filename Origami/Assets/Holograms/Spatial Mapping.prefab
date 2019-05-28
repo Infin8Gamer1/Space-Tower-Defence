@@ -46,12 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8eba3983fbe76c4f8e2a9383cd0ee51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SurfaceParent: {fileID: 0}
+  m_SurfaceParent: {fileID: 1000012674329276}
   m_FreezeUpdates: 0
   m_VolumeType: 1
   m_SphereRadius: 2
   m_HalfBoxExtents: {x: 4, y: 4, z: 4}
-  m_LodType: 0
+  m_LodType: 2
   m_NumUpdatesBeforeRemoval: 10
   m_SecondsBetweenUpdates: 2.5
   m_CurrentRenderState: 1
@@ -69,12 +69,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0701dcbd499e3248b1ea0a49bd0c93d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SurfaceParent: {fileID: 0}
+  m_SurfaceParent: {fileID: 1000012674329276}
   m_FreezeUpdates: 0
   m_VolumeType: 1
   m_SphereRadius: 2
   m_HalfBoxExtents: {x: 4, y: 4, z: 4}
-  m_LodType: 0
+  m_LodType: 1
   m_NumUpdatesBeforeRemoval: 10
   m_SecondsBetweenUpdates: 2.5
   m_Layer: 8
@@ -94,6 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   surfaces:
   - {fileID: 1391403152}
+  enableCalculations: 1
 --- !u!114 &1391403152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +113,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 311
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
