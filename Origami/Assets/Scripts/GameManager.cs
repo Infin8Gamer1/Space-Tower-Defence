@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject SpatialMapingRef;
 
+    public ScoreManager scoreManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +59,8 @@ public class GameManager : MonoBehaviour
 
                 //put homebase in place mode (moves it on raycast)
                 HomebaseRef.GetComponent<TapToPlace>().Place();
+
+                scoreManager = HomebaseRef.GetComponent<ScoreManager>();
             }
 
             if (HomebasePlaced == false)
