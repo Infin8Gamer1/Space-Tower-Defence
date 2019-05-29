@@ -120,6 +120,9 @@ public class GameManager : MonoBehaviour
         //Spawn Portal
         PortalRef = Instantiate(PortalPrefab, selectedPoint, Quaternion.identity);
 
+        HomebaseRef.GetComponent<homeBaseManager>().SpawnerReference = PortalRef.GetComponent<EnemySpawner>();
+
+
         /*//set the portal rotation to be looking at the home base
         Quaternion targetRotation = Quaternion.LookRotation(HomebaseRef.transform.position - PortalRef.transform.position);
 

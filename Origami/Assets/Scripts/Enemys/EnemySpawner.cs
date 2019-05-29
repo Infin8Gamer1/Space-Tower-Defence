@@ -16,6 +16,24 @@ public class EnemySpawnSettings
 
 public class EnemySpawner : MonoBehaviour
 {
+    #region SINGLETON_PATTERN
+    private static EnemySpawner _instance;
+
+    public static EnemySpawner Instance { get { return _instance; } }
+
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+    #endregion
     public bool Spawn = true;
 
     [Header("Enemys")]
@@ -42,7 +60,6 @@ public class EnemySpawner : MonoBehaviour
     private bool wave15 = false;
     private bool wave20 = false;
     private bool wave25 = false;
-
 
     void Start()
     {
@@ -74,10 +91,11 @@ public class EnemySpawner : MonoBehaviour
             spawnEnemy();
         }
 
-        if (numActiveEnemy <= 0)
+        if (numActiveEnemy <= 0 && waveStart == true)
         {
             // enables the wave spawner
             waveSpawn = true;
+            waveStart = false;
         }
 
         if (numActiveEnemy >= EnemysPerWave)
