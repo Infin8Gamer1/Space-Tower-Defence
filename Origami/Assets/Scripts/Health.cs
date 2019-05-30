@@ -11,13 +11,15 @@ public class Health : MonoBehaviour
 
     [Range(100, 1000)]
     public int StartingHealth = 500;
-    [Range(0.1f, 5f)]
+    [Range(0.0f, 5f)]
     public float DeathDelay = 0.2f;
     
     public UnityEvent DeathEvent;
 
     public TextMeshProUGUI HealthText;
     public Slider HealthSlider;
+
+    public bool DestroyOnDeath = true;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +34,10 @@ public class Health : MonoBehaviour
         if (health <= 0)
         {
             DeathEvent.Invoke();
-            Destroy(gameObject, DeathDelay);
+            if (DestroyOnDeath)
+            {
+                Destroy(gameObject, DeathDelay);
+            }
         }
     }
 

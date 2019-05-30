@@ -16,24 +16,6 @@ public class EnemySpawnSettings
 
 public class EnemySpawner : MonoBehaviour
 {
-    #region SINGLETON_PATTERN
-    private static EnemySpawner _instance;
-
-    public static EnemySpawner Instance { get { return _instance; } }
-
-
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            _instance = this;
-        }
-    }
-    #endregion
     public bool Spawn = true;
 
     [Header("Enemys")]

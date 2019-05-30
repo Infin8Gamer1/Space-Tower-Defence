@@ -2954,18 +2954,7 @@ MonoBehaviour:
   unPressedScale: {x: 0.45, y: 0.1, z: 0.45}
   OnClicked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2958683457802232498}
-        m_MethodName: nextWave
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   OnPressed:
@@ -3577,7 +3566,7 @@ GameObject:
   - component: {fileID: 2606826281147659443}
   - component: {fileID: 564803308716472776}
   - component: {fileID: 750100872342927926}
-  - component: {fileID: 2958683457802232498}
+  - component: {fileID: 1347241926698845474}
   m_Layer: 10
   m_Name: HomeBase
   m_TagString: Untagged
@@ -3617,11 +3606,23 @@ MonoBehaviour:
   DeathDelay: 0.2
   DeathEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1347241926698845474}
+        m_MethodName: GameOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   HealthText: {fileID: 4297506048010302969}
   HealthSlider: {fileID: 4297506047941399583}
+  DestroyOnDeath: 0
 --- !u!114 &2606826281147659443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3747,7 +3748,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2958683457802232498
+--- !u!114 &1347241926698845474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3759,7 +3760,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eff1f9a451716a44abed6504e326c26c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnerReference: {fileID: 0}
 --- !u!1 &4297506048296419302
 GameObject:
   m_ObjectHideFlags: 0

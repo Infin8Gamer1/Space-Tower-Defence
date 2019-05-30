@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.WSA;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    [Header("Loading Assets")]
     private bool loading = true;
     public GameObject LoadingBillboardPrefab;
     private GameObject LoadingBillboardRef;
 
+    [Header("HomeBase Assets")]
     public GameObject HomebasePrefab;
 
     [HideInInspector]
@@ -19,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     private bool HomebasePlaced = false;
 
+    [Header("Portal Assets")]
     [Range(0.3f,3f)]
     public float DesiredPortalDistance = 2f;
 
@@ -27,9 +31,23 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public GameObject PortalRef;
 
+    [Header("General Assets")]
     public GameObject SpatialMapingRef;
 
-    public ScoreManager scoreManager;
+    public ScoreManager scoreManager { get; set; }
+
+    public WorldCursor cursorRef;
+
+    public int EnemiesKilledInWave { get; set; }
+
+    [Header("Win / Loss Assets")]
+    public GameObject WinBilboard;
+
+    public GameObject LooseBilboard;
+
+    public GameObject PortalExplosion;
+
+    public GameObject HomeBaseExplosion;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +57,8 @@ public class GameManager : MonoBehaviour
         HomebasePlaced = false;
 
         loading = true;
+
+        EnemiesKilledInWave = 0;
 
         LoadingBillboardRef = Instantiate(LoadingBillboardPrefab);
     }
@@ -71,12 +91,13 @@ public class GameManager : MonoBehaviour
 
                     PlacePortal();
 
+                    cursorRef.ShowArrow(PortalRef.transform);
+
                     StartCoroutine(DisableNavCalculations());
                 }
             }
-        } else
-        {
-            
+        }
+        else {
             if (SpatialMapingRef.transform.childCount > 0)
             {
                 loading = false;
@@ -85,6 +106,7 @@ public class GameManager : MonoBehaviour
                 LoadingBillboardRef = null;
             }
         }
+
     }
 
     IEnumerator DisableNavCalculations()
@@ -120,7 +142,7 @@ public class GameManager : MonoBehaviour
         //Spawn Portal
         PortalRef = Instantiate(PortalPrefab, selectedPoint, Quaternion.identity);
 
-        HomebaseRef.GetComponent<homeBaseManager>().SpawnerReference = PortalRef.GetComponent<EnemySpawner>();
+        //HomebaseRef.GetComponent<homeBaseManager>().SpawnerReference = PortalRef.GetComponent<EnemySpawner>();
 
 
         /*//set the portal rotation to be looking at the home base
@@ -172,17 +194,47 @@ public class GameManager : MonoBehaviour
     public void EnemyDied()
     {
         PortalRef.GetComponent<EnemySpawner>().EnemyKilled();
+
+        scoreManager.AddScore(1);
     }
 
-    bool IsGreaterOrEqual(Vector3 a, Vector3 b)
+    public void Win()
     {
-        if (a.x >= b.x && a.y >= b.y && a.z >= b.z)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        StartCoroutine(win());
+    }
+
+    private IEnumerator win()
+    {
+        Instantiate(PortalExplosion, PortalRef.transform.position, Quaternion.identity);
+        Destroy(PortalRef);
+        yield return new WaitForSeconds(3f);
+
+        Instantiate(WinBilboard);
+
+        yield return new WaitForSeconds(10f);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        yield return null;
+    }
+
+    public void Loose()
+    {
+        StartCoroutine(loose());
+    }
+
+    private IEnumerator loose()
+    {
+        Instantiate(HomeBaseExplosion, HomebaseRef.transform.position, Quaternion.identity);
+        Destroy(HomebaseRef);
+        yield return new WaitForSeconds(3f);
+
+        Instantiate(LooseBilboard);
+
+        yield return new WaitForSeconds(10f);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        yield return null;
     }
 }
