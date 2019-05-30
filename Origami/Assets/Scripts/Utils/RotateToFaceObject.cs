@@ -14,7 +14,7 @@ public class RotateToFaceObject : MonoBehaviour
     public bool UseY = true;
     public bool UseZ = false;
 
-    void Start()
+    void Awake()
     {
         if (useMainCameraAsTarget)
         {

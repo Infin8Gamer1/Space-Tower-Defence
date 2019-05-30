@@ -96,6 +96,11 @@ public class Spawner : MonoBehaviour
 
     IEnumerator SpawnLoop()
     {
+        if (paused)
+        {
+            yield break;
+        }
+
         LoopGoing = true;
 
         if (curentWaveIndex > waves.Count)

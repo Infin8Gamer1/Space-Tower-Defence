@@ -444,9 +444,9 @@ MonoBehaviour:
     EnemyTypes: []
   - WaveNumber: 2
     StartWaitTime: 5
-    NumberOfEnemysInWave: 1
-    SpawnTime: 0.1
-    SpawnTimeVariance: 0
+    NumberOfEnemysInWave: 2
+    SpawnTime: 6
+    SpawnTimeVariance: 0.5
     EnemyTypes:
     - Prefab: {fileID: 2964345889032374090, guid: 683c2760379f3d944977e6aea2913aee,
         type: 3}
