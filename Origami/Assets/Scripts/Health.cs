@@ -19,6 +19,8 @@ public class Health : MonoBehaviour
     public TextMeshProUGUI HealthText;
     public Slider HealthSlider;
 
+    public bool DestroyOnDeath = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +34,10 @@ public class Health : MonoBehaviour
         if (health <= 0)
         {
             DeathEvent.Invoke();
-            Destroy(gameObject, DeathDelay);
+            if (DestroyOnDeath)
+            {
+                Destroy(gameObject, DeathDelay);
+            }
         }
     }
 

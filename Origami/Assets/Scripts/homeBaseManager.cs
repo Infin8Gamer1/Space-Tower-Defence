@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class homeBaseManager : MonoBehaviour
+public class HomeBaseManager : MonoBehaviour
 {
 
-    public EnemySpawner SpawnerReference;
-
-    public void nextWave()
+    public void GameOver()
     {
-        SpawnerReference.waveStart = true;
+        GameManager.Instance.Loose();
     }
 }

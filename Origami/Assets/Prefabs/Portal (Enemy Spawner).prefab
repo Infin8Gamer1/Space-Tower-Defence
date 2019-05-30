@@ -358,6 +358,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4531069000073101127}
   - component: {fileID: 4531069000073101124}
+  - component: {fileID: 8821100399804797262}
   m_Layer: 0
   m_Name: Portal (Enemy Spawner)
   m_TagString: Untagged
@@ -388,7 +389,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4531069000073101123}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1bfa2cfe3a274a4e920371d83df6060, type: 3}
   m_Name: 
@@ -408,7 +409,33 @@ MonoBehaviour:
     SpawnIDMin: 0
     SpawnIDMax: 0
   EnemysPerWave: 10
+  waveNumber: 1
   timeBetweenSpawns: 0.75
+  waveStart: 0
+--- !u!114 &8821100399804797262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4531069000073101123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca4c22073cd360f489048be8b251dfd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultEnemyTypes:
+  - Prefab: {fileID: 4275389562618200569, guid: bbe59e9349265ad438f4013c1714e337,
+      type: 3}
+    spawnRangeMin: 0
+    spawnRangeMax: 100
+  waves:
+  - WaveNumber: 0
+    StartWaitTime: 5
+    NumberOfEnemysInWave: 30
+    SpawnTime: 1.5
+    SpawnTimeVariance: 0.3
+    EnemyTypes: []
 --- !u!1001 &8872066174974083753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -416,6 +443,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4531069000073101127}
     m_Modifications:
+    - target: {fileID: 100000, guid: b6fecef6c92b67147b638a07ef91195b, type: 3}
+      propertyPath: m_Name
+      value: SteamMobile
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b6fecef6c92b67147b638a07ef91195b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -472,10 +503,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.1
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b6fecef6c92b67147b638a07ef91195b, type: 3}
-      propertyPath: m_Name
-      value: SteamMobile
-      objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: b6fecef6c92b67147b638a07ef91195b, type: 3}
       propertyPath: moveWithTransform
       value: 0
@@ -531,6 +558,18 @@ PrefabInstance:
     - target: {fileID: 19800000, guid: b6fecef6c92b67147b638a07ef91195b, type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].time
       value: 0.14868848
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: b6fecef6c92b67147b638a07ef91195b, type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: b6fecef6c92b67147b638a07ef91195b, type: 3}
+      propertyPath: startDelay.maxCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: b6fecef6c92b67147b638a07ef91195b, type: 3}
+      propertyPath: startDelay.maxCurve.m_Curve.Array.data[1].value
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6fecef6c92b67147b638a07ef91195b, type: 3}

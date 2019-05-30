@@ -15,6 +15,32 @@ public class WorldCursor : MonoBehaviour {
 
     public LayerMask mask;
 
+    public GameObject Arrow;
+
+    private bool showArrow = false;
+    private Transform arrowTarget = null;
+
+    public void ShowArrow(Transform arrowTarget)
+    {
+        showArrow = true;
+
+        this.arrowTarget = arrowTarget;
+
+        Arrow.SetActive(true);
+    }
+
+    public void HideArrow()
+    {
+        showArrow = false;
+
+        Arrow.SetActive(false);
+    }
+
+    public Transform getArrowTarget()
+    {
+        return arrowTarget;
+    }
+
     // Use this for initialization
     void Start () {
         meshRenderer = gameObject.GetComponentInChildren<MeshRenderer>();
@@ -22,6 +48,8 @@ public class WorldCursor : MonoBehaviour {
         GazeManager.Instance.subscribedComponents.Add(this);
 
         SourceLostScale = transform.localScale;
+
+        Arrow.SetActive(false);
     }
 
     void OnSourceDetected(InteractionSourceDetectedEventArgs args)
@@ -60,6 +88,11 @@ public class WorldCursor : MonoBehaviour {
             transform.position = (gazeDirection * defaultDistance) + headPosition;
 
             transform.rotation = Quaternion.FromToRotation(Vector3.up, gazeDirection);
+        }
+
+        if (showArrow && arrowTarget != null)
+        {
+            Arrow.transform.LookAt(arrowTarget);
         }
 	}
 }

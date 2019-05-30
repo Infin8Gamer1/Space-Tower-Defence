@@ -143,6 +143,12 @@ public class GazeManager : MonoBehaviour
             if (FocusedObject != null)
             {
                 FocusedObject.SendMessageUpwards("OnCursorEnter", SendMessageOptions.DontRequireReceiver);
+
+                //hide the arrow if it is the target for the arrow
+                if (GameManager.Instance.cursorRef.getArrowTarget() == FocusedObject.transform)
+                {
+                    GameManager.Instance.cursorRef.HideArrow();
+                }
             }
 
             if (oldFocusObject != null)
