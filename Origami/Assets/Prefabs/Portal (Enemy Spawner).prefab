@@ -432,14 +432,14 @@ MonoBehaviour:
   waves:
   - WaveNumber: 0
     StartWaitTime: 5
-    NumberOfEnemysInWave: 30
-    SpawnTime: 1.5
+    NumberOfEnemysInWave: 4
+    SpawnTime: 2.5
     SpawnTimeVariance: 0.3
     EnemyTypes: []
   - WaveNumber: 1
     StartWaitTime: 5
-    NumberOfEnemysInWave: 50
-    SpawnTime: 1.3
+    NumberOfEnemysInWave: 10
+    SpawnTime: 2
     SpawnTimeVariance: 0.4
     EnemyTypes: []
   - WaveNumber: 2

@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
                     //put homebase in place mode (moves it on raycast)
                     HomebaseRef.GetComponent<TapToPlace>().Place();
 
-                    scoreManager = HomebaseRef.GetComponent<ScoreManager>();
+                    scoreManager = HomebaseRef.GetComponentInChildren<ScoreManager>();
                 }
 
                 if (HomebasePlaced == false)
@@ -198,9 +198,15 @@ public class GameManager : MonoBehaviour
 
     public void EnemyDied()
     {
-        PortalRef.GetComponent<EnemySpawner>().EnemyKilled();
+        //PortalRef.GetComponent<EnemySpawner>().EnemyKilled();
 
-        scoreManager.AddScore(1);
+        EnemiesKilledInWave++;
+
+        if (scoreManager != null)
+        {
+            scoreManager.AddScore(1);
+        }
+        
     }
 
     public void Win()
