@@ -5,6 +5,7 @@ using UnityEngine;
 public class RotateToFaceObject : MonoBehaviour
 { 
     public Transform target;
+    public bool useMainCameraAsTarget = false;
 
     [Range(0.01f, 5f)]
     public float strength = 0.5f;
@@ -12,6 +13,14 @@ public class RotateToFaceObject : MonoBehaviour
     public bool UseX = false;
     public bool UseY = true;
     public bool UseZ = false;
+
+    void Start()
+    {
+        if (useMainCameraAsTarget)
+        {
+            target = Camera.main.transform;
+        }
+    }
 
     // Update is called once per frame
     void Update()
