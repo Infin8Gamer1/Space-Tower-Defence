@@ -436,6 +436,22 @@ MonoBehaviour:
     SpawnTime: 1.5
     SpawnTimeVariance: 0.3
     EnemyTypes: []
+  - WaveNumber: 1
+    StartWaitTime: 5
+    NumberOfEnemysInWave: 50
+    SpawnTime: 1.3
+    SpawnTimeVariance: 0.4
+    EnemyTypes: []
+  - WaveNumber: 2
+    StartWaitTime: 5
+    NumberOfEnemysInWave: 1
+    SpawnTime: 0.1
+    SpawnTimeVariance: 0
+    EnemyTypes:
+    - Prefab: {fileID: 2964345889032374090, guid: 683c2760379f3d944977e6aea2913aee,
+        type: 3}
+      spawnRangeMin: 0
+      spawnRangeMax: 100
 --- !u!1001 &8872066174974083753
 PrefabInstance:
   m_ObjectHideFlags: 0

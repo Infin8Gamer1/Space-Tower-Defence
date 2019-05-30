@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
 
     [Range(100, 1000)]
     public int StartingHealth = 500;
-    [Range(0.1f, 5f)]
+    [Range(0.0f, 5f)]
     public float DeathDelay = 0.2f;
     
     public UnityEvent DeathEvent;

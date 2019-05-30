@@ -27,7 +27,7 @@ public class Wave
     [Range(0.1f, 15f)]
     public float StartWaitTime = 5f;
 
-    [Range(2,200)]
+    [Range(1,200)]
     public int NumberOfEnemysInWave = 10;
 
     [Range(0.1f, 10f)]
@@ -47,9 +47,14 @@ public class Spawner : MonoBehaviour
     public List<Wave> waves = new List<Wave>();
 
     private int enemiesSpawnedInWave;
+
     private int curentWaveIndex;
+
     private bool LoopGoing = false;
+
     private bool WaveSpawned = false;
+
+    private bool paused = false;
 
     // Start is called before the first frame update
     void Start()
@@ -61,29 +66,32 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         //GM.CurrentWave = curentWaveIndex + 1;
-
-        if (LoopGoing == false)
+        if (!paused)
         {
-            StartCoroutine(SpawnLoop());
-        }
-
-        if (WaveSpawned && GameManager.Instance.EnemiesKilledInWave >= enemiesSpawnedInWave)
-        {
-            enemiesSpawnedInWave = 0;
-            GameManager.Instance.EnemiesKilledInWave = 0;
-            if ((curentWaveIndex + 1) < waves.Count)
+            if (LoopGoing == false)
             {
-                curentWaveIndex += 1;
-                WaveSpawned = false;
-                LoopGoing = false;
-            }
-            else
-            {
-                //GM.Win();
-                GameManager.Instance.Win();
+                StartCoroutine(SpawnLoop());
             }
 
+            if (WaveSpawned && GameManager.Instance.EnemiesKilledInWave >= enemiesSpawnedInWave)
+            {
+                enemiesSpawnedInWave = 0;
+                GameManager.Instance.EnemiesKilledInWave = 0;
+                if ((curentWaveIndex + 1) < waves.Count)
+                {
+                    curentWaveIndex += 1;
+                    WaveSpawned = false;
+                    LoopGoing = false;
+                }
+                else
+                {
+                    GameManager.Instance.Win();
+                    paused = true;
+                }
+
+            }
         }
+        
     }
 
     IEnumerator SpawnLoop()
@@ -92,8 +100,8 @@ public class Spawner : MonoBehaviour
 
         if (curentWaveIndex > waves.Count)
         {
-            //GM.Win();
             GameManager.Instance.Win();
+            paused = true;
             yield break;
         }
 
