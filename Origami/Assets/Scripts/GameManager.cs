@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject HomeBaseExplosion;
 
+    public bool gameEndSequence = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,43 +69,46 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //Debug.Log("Navmesh Size : " + SpatialMapingRef.GetComponent<NavMeshSurface>().size);
-
-        if (loading == false)
+        if (!gameEndSequence)
         {
-            if (HomebaseRef == null)
+            if (loading == false)
             {
-                //Spawn homebase
-                HomebaseRef = Instantiate(HomebasePrefab);
-
-                HomebaseRef.GetComponentInChildren<RotateToFaceObject>().target = Camera.main.gameObject.transform;
-
-                //put homebase in place mode (moves it on raycast)
-                HomebaseRef.GetComponent<TapToPlace>().Place();
-
-                scoreManager = HomebaseRef.GetComponent<ScoreManager>();
-            }
-
-            if (HomebasePlaced == false)
-            {
-                if (HomebaseRef.GetComponent<TapToPlace>().Placed)
+                if (HomebaseRef == null)
                 {
-                    HomebasePlaced = true;
+                    //Spawn homebase
+                    HomebaseRef = Instantiate(HomebasePrefab);
 
-                    PlacePortal();
+                    HomebaseRef.GetComponentInChildren<RotateToFaceObject>().target = Camera.main.gameObject.transform;
 
-                    cursorRef.ShowArrow(PortalRef.transform);
+                    //put homebase in place mode (moves it on raycast)
+                    HomebaseRef.GetComponent<TapToPlace>().Place();
 
-                    StartCoroutine(DisableNavCalculations());
+                    scoreManager = HomebaseRef.GetComponent<ScoreManager>();
+                }
+
+                if (HomebasePlaced == false)
+                {
+                    if (HomebaseRef.GetComponent<TapToPlace>().Placed)
+                    {
+                        HomebasePlaced = true;
+
+                        PlacePortal();
+
+                        cursorRef.ShowArrow(PortalRef.transform);
+
+                        StartCoroutine(DisableNavCalculations());
+                    }
                 }
             }
-        }
-        else {
-            if (SpatialMapingRef.transform.childCount > 0)
+            else
             {
-                loading = false;
+                if (SpatialMapingRef.transform.childCount > 0)
+                {
+                    loading = false;
 
-                Destroy(LoadingBillboardRef);
-                LoadingBillboardRef = null;
+                    Destroy(LoadingBillboardRef);
+                    LoadingBillboardRef = null;
+                }
             }
         }
 
@@ -200,6 +205,7 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
+        gameEndSequence = true;
         StartCoroutine(win());
     }
 
@@ -213,13 +219,17 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(10f);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        gameEndSequence = false;
+        Destroy(HomebaseRef);
 
         yield return null;
     }
 
     public void Loose()
     {
+        gameEndSequence = true;
         StartCoroutine(loose());
     }
 
@@ -233,7 +243,10 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(10f);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        gameEndSequence = false;
+        Destroy(PortalRef);
 
         yield return null;
     }
