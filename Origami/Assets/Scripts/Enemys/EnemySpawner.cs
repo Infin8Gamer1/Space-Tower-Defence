@@ -43,7 +43,6 @@ public class EnemySpawner : MonoBehaviour
     private bool wave20 = false;
     private bool wave25 = false;
 
-
     void Start()
     {
 
@@ -74,10 +73,11 @@ public class EnemySpawner : MonoBehaviour
             spawnEnemy();
         }
 
-        if (numActiveEnemy <= 0)
+        if (numActiveEnemy <= 0 && waveStart == true)
         {
             // enables the wave spawner
             waveSpawn = true;
+            waveStart = false;
         }
 
         if (numActiveEnemy >= EnemysPerWave)
