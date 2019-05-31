@@ -254,6 +254,7 @@ MonoBehaviour:
   HomeBaseExplosion: {fileID: 6400053647626536986, guid: 20a06d4afb344a84abcb3b98c78dcf71,
     type: 3}
   gameEndSequence: 0
+  continueButton: 0
 --- !u!114 &1057939181
 MonoBehaviour:
   m_ObjectHideFlags: 0
