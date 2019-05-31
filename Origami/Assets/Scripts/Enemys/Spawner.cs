@@ -30,7 +30,7 @@ public class Wave
     [Range(1,200)]
     public int NumberOfEnemysInWave = 10;
 
-    [Range(0.1f, 10f)]
+    [Range(0.1f, 30f)]
     public float SpawnTime = 0.5f;
 
     [Range(0f, 3f)]

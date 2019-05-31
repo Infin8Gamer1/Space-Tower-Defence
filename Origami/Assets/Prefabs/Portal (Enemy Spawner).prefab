@@ -439,14 +439,14 @@ MonoBehaviour:
   - WaveNumber: 1
     StartWaitTime: 5
     NumberOfEnemysInWave: 10
-    SpawnTime: 2
-    SpawnTimeVariance: 0.4
+    SpawnTime: 5
+    SpawnTimeVariance: 3
     EnemyTypes: []
   - WaveNumber: 2
     StartWaitTime: 5
     NumberOfEnemysInWave: 2
-    SpawnTime: 6
-    SpawnTimeVariance: 0.5
+    SpawnTime: 20
+    SpawnTimeVariance: 2
     EnemyTypes:
     - Prefab: {fileID: 2964345889032374090, guid: 683c2760379f3d944977e6aea2913aee,
         type: 3}
