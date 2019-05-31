@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
                     //put homebase in place mode (moves it on raycast)
                     HomebaseRef.GetComponent<TapToPlace>().Place();
 
-                    scoreManager = HomebaseRef.GetComponent<ScoreManager>();
+                    scoreManager = HomebaseRef.GetComponentInChildren<ScoreManager>();
                 }
 
                 if (HomebasePlaced == false)
@@ -200,9 +200,15 @@ public class GameManager : MonoBehaviour
 
     public void EnemyDied()
     {
-        PortalRef.GetComponent<EnemySpawner>().EnemyKilled();
+        //PortalRef.GetComponent<EnemySpawner>().EnemyKilled();
 
-        scoreManager.AddScore(1);
+        EnemiesKilledInWave++;
+
+        if (scoreManager != null)
+        {
+            scoreManager.AddScore(1);
+        }
+        
     }
 
     public void Win()
@@ -221,7 +227,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(10f);
 
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         gameEndSequence = false;
         Destroy(HomebaseRef);
@@ -245,7 +251,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(10f);
 
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         gameEndSequence = false;
         Destroy(PortalRef);

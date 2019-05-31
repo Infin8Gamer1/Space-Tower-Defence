@@ -30,7 +30,7 @@ public class Wave
     [Range(1,200)]
     public int NumberOfEnemysInWave = 10;
 
-    [Range(0.1f, 10f)]
+    [Range(0.1f, 30f)]
     public float SpawnTime = 0.5f;
 
     [Range(0f, 3f)]
@@ -77,6 +77,7 @@ public class Spawner : MonoBehaviour
             {
                 enemiesSpawnedInWave = 0;
                 GameManager.Instance.EnemiesKilledInWave = 0;
+
                 if ((curentWaveIndex + 1) < waves.Count)
                 {
                     curentWaveIndex += 1;
@@ -119,7 +120,7 @@ public class Spawner : MonoBehaviour
         {
             spawnEnemy((waves[curentWaveIndex].EnemyTypes.Count > 0) ? waves[curentWaveIndex].EnemyTypes : defaultEnemyTypes);
             
-            yield return new WaitForSeconds(Random.Range(waves[curentWaveIndex].SpawnTime - waves[curentWaveIndex].SpawnTimeVariance, waves[curentWaveIndex].SpawnTime + waves[curentWaveIndex].SpawnTimeVariance));
+            yield return new WaitForSeconds(Mathf.Clamp(Random.Range(waves[curentWaveIndex].SpawnTime - waves[curentWaveIndex].SpawnTimeVariance, waves[curentWaveIndex].SpawnTime + waves[curentWaveIndex].SpawnTimeVariance), 0.0f, 200f));
         }
 
         WaveSpawned = true;

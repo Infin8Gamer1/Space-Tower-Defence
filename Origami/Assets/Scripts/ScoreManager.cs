@@ -16,8 +16,6 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         score = 0;
-
-        StartCoroutine(TextUpdateLoop());
     }
 
     //Add money to account
@@ -31,13 +29,8 @@ public class ScoreManager : MonoBehaviour
         return score;
     }
 
-    IEnumerator TextUpdateLoop()
+    void Update()
     {
-        var wait = new WaitForSeconds(TextUpdateTimer);
-        while (true)
-        {
-            Text.text = "Score:\n" + score;
-            yield return wait;
-        }
+        Text.text = "Score: " + score;
     }
 }
