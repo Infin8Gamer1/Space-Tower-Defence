@@ -3604,7 +3604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartingHealth: 500
-  DeathDelay: 0.2
+  DeathDelay: 0.1
   DeathEvent:
     m_PersistentCalls:
       m_Calls:

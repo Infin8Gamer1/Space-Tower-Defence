@@ -269,7 +269,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.65
-  m_Height: 4
+  m_Height: 3
   m_Direction: 0
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &580383807594520105
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 893b4bcd1ddba784ead33f604255cf27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageToBase: 50
+  DamageToBase: 100
   ExplosionPrefab: {fileID: 6400053647626536986, guid: 20a06d4afb344a84abcb3b98c78dcf71,
     type: 3}
   DeathParticles: {fileID: 3355562330902873701, guid: cb301c2787bba03479a8c10bca5d5c70,

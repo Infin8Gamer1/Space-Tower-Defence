@@ -40,6 +40,7 @@ public class Wave
     public List<EnemyType> EnemyTypes = new List<EnemyType>();
 }
 
+[RequireComponent(typeof(AudioSource))]
 public class Spawner : MonoBehaviour
 {
     public List<EnemyType> defaultEnemyTypes = new List<EnemyType>();
@@ -55,6 +56,8 @@ public class Spawner : MonoBehaviour
     private bool WaveSpawned = false;
 
     private bool paused = false;
+
+    public AudioClip waveApproaching;
 
     // Start is called before the first frame update
     void Start()
@@ -113,6 +116,9 @@ public class Spawner : MonoBehaviour
 
         //wait for wave start seconds
         yield return new WaitForSeconds(waves[curentWaveIndex].StartWaitTime);
+
+        gameObject.GetComponent<AudioSource>().clip = waveApproaching;
+        gameObject.GetComponent<AudioSource>().Play();
 
         //spawn zomibies in wave
         //wait for spawn time and repeat until all zombies for wave have been spawned
