@@ -225,7 +225,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(10f);
 
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         gameEndSequence = false;
         Destroy(HomebaseRef);
@@ -249,7 +249,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(10f);
 
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         gameEndSequence = false;
         Destroy(PortalRef);
