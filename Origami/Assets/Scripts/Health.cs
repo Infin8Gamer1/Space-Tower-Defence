@@ -16,6 +16,8 @@ public class Health : MonoBehaviour
     
     public UnityEvent DeathEvent;
 
+    public UnityEvent DamageTakenEvent;
+
     public TextMeshProUGUI HealthText;
     public Slider HealthSlider;
 
@@ -30,6 +32,8 @@ public class Health : MonoBehaviour
     public void RemoveHealth(int ammount)
     {
         health = health - ammount;
+
+        DamageTakenEvent.Invoke();
 
         if (health <= 0)
         {
