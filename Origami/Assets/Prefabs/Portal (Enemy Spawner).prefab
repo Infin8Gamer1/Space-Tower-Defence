@@ -427,30 +427,26 @@ MonoBehaviour:
   defaultEnemyTypes:
   - Prefab: {fileID: 4275389562618200569, guid: bbe59e9349265ad438f4013c1714e337,
       type: 3}
-    spawnRangeMin: 0
+    spawnRangeMin: 22
     spawnRangeMax: 100
   waves:
   - WaveNumber: 0
-    StartWaitTime: 5
-    NumberOfEnemysInWave: 4
-    SpawnTime: 2.5
-    SpawnTimeVariance: 0.3
-    EnemyTypes: []
-  - WaveNumber: 1
-    StartWaitTime: 5
-    NumberOfEnemysInWave: 10
-    SpawnTime: 5
-    SpawnTimeVariance: 3
-    EnemyTypes: []
-  - WaveNumber: 2
-    StartWaitTime: 5
-    NumberOfEnemysInWave: 2
-    SpawnTime: 20
-    SpawnTimeVariance: 2
+    StartWaitTime: 6
+    NumberOfEnemysInWave: 25
+    SpawnTime: 3
+    SpawnTimeVariance: 0.5
     EnemyTypes:
-    - Prefab: {fileID: 2964345889032374090, guid: 683c2760379f3d944977e6aea2913aee,
+    - Prefab: {fileID: 231714193310789049, guid: 85e271fb6d289ed47a42131a516dbc45,
         type: 3}
       spawnRangeMin: 0
+      spawnRangeMax: 40
+    - Prefab: {fileID: 4275389562618200569, guid: bbe59e9349265ad438f4013c1714e337,
+        type: 3}
+      spawnRangeMin: 41
+      spawnRangeMax: 80
+    - Prefab: {fileID: 2964345889032374090, guid: 683c2760379f3d944977e6aea2913aee,
+        type: 3}
+      spawnRangeMin: 81
       spawnRangeMax: 100
 --- !u!1001 &8872066174974083753
 PrefabInstance:
