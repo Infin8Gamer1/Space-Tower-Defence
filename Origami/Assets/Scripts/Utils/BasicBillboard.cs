@@ -14,7 +14,6 @@ public class BasicBillboard : MonoBehaviour
     public LayerMask mask;
 
     private Vector3 DesiredPos;
-    private Quaternion DesiredRot;
 
 
     // Start is called before the first frame update
@@ -25,12 +24,7 @@ public class BasicBillboard : MonoBehaviour
 
         DesiredPos = (gazeDirection * defaultDistance) + headPosition;
 
-        DesiredRot = Quaternion.FromToRotation(Vector3.down, gazeDirection);
-
-        
-
         transform.position = DesiredPos;
-        transform.rotation = DesiredRot;
     }
 
     // Update is called once per frame
@@ -47,28 +41,25 @@ public class BasicBillboard : MonoBehaviour
             if (Vector3.Distance(hitInfo.point, headPosition) <= defaultDistance)
             {
                 DesiredPos = hitInfo.point;
-
-                DesiredRot = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
             }
             else
             {
                 DesiredPos = (gazeDirection * defaultDistance) + headPosition;
-
-                DesiredRot = Quaternion.FromToRotation(Vector3.down, gazeDirection);
                 
             }
         }
         else
         {
             DesiredPos = (gazeDirection * defaultDistance) + headPosition;
-
-            DesiredRot = Quaternion.FromToRotation(Vector3.down, gazeDirection);
-            
         }
 
-        //lerp pos and rot to desired values
-        transform.rotation = Quaternion.Lerp(transform.rotation, DesiredRot, Time.deltaTime * rotationSpeed);
+        //set the y to the same as the cameras y
+        DesiredPos.y = Camera.main.transform.position.y;
 
+        //lerp pos to desired value
         transform.position = Vector3.Lerp(transform.position, DesiredPos, Time.deltaTime * positionSpeed);
+
+        //use look at to look at the main camera
+        transform.LookAt(Camera.main.transform);
     }
 }

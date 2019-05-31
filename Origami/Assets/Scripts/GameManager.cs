@@ -51,7 +51,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject HomeBaseExplosionSecond;
 
+    [HideInInspector]
     public bool gameEndSequence = false;
+
+    [HideInInspector]
+    public bool continueButton = false;
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +66,10 @@ public class GameManager : MonoBehaviour
 
         loading = true;
 
+        gameEndSequence = false;
+
+        continueButton = false;
+
         EnemiesKilledInWave = 0;
 
         LoadingBillboardRef = Instantiate(LoadingBillboardPrefab);
@@ -70,7 +78,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("Navmesh Size : " + SpatialMapingRef.GetComponent<NavMeshSurface>().size);
+        
         if (!gameEndSequence)
         {
             if (loading == false)
@@ -200,8 +208,6 @@ public class GameManager : MonoBehaviour
 
     public void EnemyDied()
     {
-        //PortalRef.GetComponent<EnemySpawner>().EnemyKilled();
-
         EnemiesKilledInWave++;
 
         if (scoreManager != null)
@@ -225,12 +231,12 @@ public class GameManager : MonoBehaviour
 
         Instantiate(WinBilboard);
 
-        yield return new WaitForSeconds(10f);
+        continueButton = false;
+        yield return new WaitUntil(() => continueButton == true);
+
+        Destroy(HomebaseRef);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
-        gameEndSequence = false;
-        Destroy(HomebaseRef);
 
         yield return null;
     }
@@ -259,12 +265,14 @@ public class GameManager : MonoBehaviour
 
         Instantiate(LooseBilboard);
 
-        yield return new WaitForSeconds(10f);
+        continueButton = false;
+        yield return new WaitUntil(() => continueButton == true);
+
+        Destroy(PortalRef);
+
+        Instantiate(LoadingBillboardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
-        gameEndSequence = false;
-        Destroy(PortalRef);
 
         yield return null;
     }
