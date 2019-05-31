@@ -251,7 +251,9 @@ MonoBehaviour:
     type: 3}
   PortalExplosion: {fileID: 6400053647626536986, guid: 20a06d4afb344a84abcb3b98c78dcf71,
     type: 3}
-  HomeBaseExplosion: {fileID: 6400053647626536986, guid: 20a06d4afb344a84abcb3b98c78dcf71,
+  HomeBaseExplosionFirst: {fileID: 1519203938062927121, guid: 9d3a6743b9909534db4e8d289b4defb4,
+    type: 3}
+  HomeBaseExplosionSecond: {fileID: 5031989920014389831, guid: 1efee06cc049c58469b0ff48915f5769,
     type: 3}
   gameEndSequence: 0
   continueButton: 0

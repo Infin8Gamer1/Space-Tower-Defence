@@ -47,7 +47,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject PortalExplosion;
 
-    public GameObject HomeBaseExplosion;
+    public GameObject HomeBaseExplosionFirst;
+
+    public GameObject HomeBaseExplosionSecond;
 
     [HideInInspector]
     public bool gameEndSequence = false;
@@ -247,7 +249,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator loose()
     {
-        Instantiate(HomeBaseExplosion, HomebaseRef.transform.position, Quaternion.identity);
+        Instantiate(HomeBaseExplosionFirst, HomebaseRef.transform.position, Quaternion.identity);
         Destroy(HomebaseRef);
         yield return new WaitForSeconds(3f);
 
