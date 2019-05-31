@@ -47,7 +47,15 @@ public class GameManager : MonoBehaviour
 
     public GameObject PortalExplosion;
 
-    public GameObject HomeBaseExplosion;
+    public GameObject HomeBaseExplosionFirst;
+
+    public GameObject HomeBaseExplosionSecond;
+
+    [HideInInspector]
+    public bool gameEndSequence = false;
+
+    [HideInInspector]
+    public bool continueButton = false;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +66,10 @@ public class GameManager : MonoBehaviour
 
         loading = true;
 
+        gameEndSequence = false;
+
+        continueButton = false;
+
         EnemiesKilledInWave = 0;
 
         LoadingBillboardRef = Instantiate(LoadingBillboardPrefab);
@@ -66,44 +78,47 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("Navmesh Size : " + SpatialMapingRef.GetComponent<NavMeshSurface>().size);
-
-        if (loading == false)
+        
+        if (!gameEndSequence)
         {
-            if (HomebaseRef == null)
+            if (loading == false)
             {
-                //Spawn homebase
-                HomebaseRef = Instantiate(HomebasePrefab);
-
-                HomebaseRef.GetComponentInChildren<RotateToFaceObject>().target = Camera.main.gameObject.transform;
-
-                //put homebase in place mode (moves it on raycast)
-                HomebaseRef.GetComponent<TapToPlace>().Place();
-
-                scoreManager = HomebaseRef.GetComponent<ScoreManager>();
-            }
-
-            if (HomebasePlaced == false)
-            {
-                if (HomebaseRef.GetComponent<TapToPlace>().Placed)
+                if (HomebaseRef == null)
                 {
-                    HomebasePlaced = true;
+                    //Spawn homebase
+                    HomebaseRef = Instantiate(HomebasePrefab);
 
-                    PlacePortal();
+                    HomebaseRef.GetComponentInChildren<RotateToFaceObject>().target = Camera.main.gameObject.transform;
 
-                    cursorRef.ShowArrow(PortalRef.transform);
+                    //put homebase in place mode (moves it on raycast)
+                    HomebaseRef.GetComponent<TapToPlace>().Place();
 
-                    StartCoroutine(DisableNavCalculations());
+                    scoreManager = HomebaseRef.GetComponentInChildren<ScoreManager>();
+                }
+
+                if (HomebasePlaced == false)
+                {
+                    if (HomebaseRef.GetComponent<TapToPlace>().Placed)
+                    {
+                        HomebasePlaced = true;
+
+                        PlacePortal();
+
+                        cursorRef.ShowArrow(PortalRef.transform);
+
+                        StartCoroutine(DisableNavCalculations());
+                    }
                 }
             }
-        }
-        else {
-            if (SpatialMapingRef.transform.childCount > 0)
+            else
             {
-                loading = false;
+                if (SpatialMapingRef.transform.childCount > 0)
+                {
+                    loading = false;
 
-                Destroy(LoadingBillboardRef);
-                LoadingBillboardRef = null;
+                    Destroy(LoadingBillboardRef);
+                    LoadingBillboardRef = null;
+                }
             }
         }
 
@@ -193,13 +208,18 @@ public class GameManager : MonoBehaviour
 
     public void EnemyDied()
     {
-        PortalRef.GetComponent<EnemySpawner>().EnemyKilled();
+        EnemiesKilledInWave++;
 
-        scoreManager.AddScore(1);
+        if (scoreManager != null)
+        {
+            scoreManager.AddScore(1);
+        }
+        
     }
 
     public void Win()
     {
+        gameEndSequence = true;
         StartCoroutine(win());
     }
 
@@ -211,7 +231,10 @@ public class GameManager : MonoBehaviour
 
         Instantiate(WinBilboard);
 
-        yield return new WaitForSeconds(10f);
+        continueButton = false;
+        yield return new WaitUntil(() => continueButton == true);
+
+        Destroy(HomebaseRef);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
@@ -220,18 +243,34 @@ public class GameManager : MonoBehaviour
 
     public void Loose()
     {
+        gameEndSequence = true;
         StartCoroutine(loose());
     }
 
     private IEnumerator loose()
     {
-        Instantiate(HomeBaseExplosion, HomebaseRef.transform.position, Quaternion.identity);
+        //triggers the first part of the explosion
+        Instantiate(HomeBaseExplosionFirst, HomebaseRef.transform.position, Quaternion.identity);
+
+        //waits for a second for the dramatic effect of the implosion
+        yield return new WaitForSeconds(1f);
+        
+        //second particle effect of the explosion sequence
+        Instantiate(HomeBaseExplosionSecond, HomebaseRef.transform.position, Quaternion.identity);
+        
         Destroy(HomebaseRef);
+
+        //waits for 3 seconds before bringing the lose board up
         yield return new WaitForSeconds(3f);
 
         Instantiate(LooseBilboard);
 
-        yield return new WaitForSeconds(10f);
+        continueButton = false;
+        yield return new WaitUntil(() => continueButton == true);
+
+        Destroy(PortalRef);
+
+        Instantiate(LoadingBillboardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
