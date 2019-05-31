@@ -243,8 +243,18 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator loose()
     {
+        //triggers the first part of the explosion
         Instantiate(HomeBaseExplosionFirst, HomebaseRef.transform.position, Quaternion.identity);
+
+        //waits for a second for the dramatic effect of the implosion
+        yield return new WaitForSeconds(1f);
+        
+        //second particle effect of the explosion sequence
+        Instantiate(HomeBaseExplosionSecond, HomebaseRef.transform.position, Quaternion.identity);
+        
         Destroy(HomebaseRef);
+
+        //waits for 3 seconds before bringing the lose board up
         yield return new WaitForSeconds(3f);
 
         Instantiate(LooseBilboard);
