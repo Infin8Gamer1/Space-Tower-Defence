@@ -106,6 +106,8 @@ public class GameManager : MonoBehaviour
 
                         cursorRef.ShowArrow(PortalRef.transform);
 
+                        gameObject.GetComponent<ShootManager>().Enabled = true;
+
                         StartCoroutine(DisableNavCalculations());
                     }
                 }
@@ -229,6 +231,8 @@ public class GameManager : MonoBehaviour
         Destroy(PortalRef);
         yield return new WaitForSeconds(3f);
 
+        gameObject.GetComponent<ShootManager>().Enabled = false;
+
         Instantiate(WinBilboard);
 
         continueButton = false;
@@ -236,7 +240,7 @@ public class GameManager : MonoBehaviour
 
         Destroy(HomebaseRef);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
 
         yield return null;
     }
@@ -261,7 +265,9 @@ public class GameManager : MonoBehaviour
         Destroy(HomebaseRef);
 
         //waits for 3 seconds before bringing the lose board up
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
+
+        gameObject.GetComponent<ShootManager>().Enabled = false;
 
         Instantiate(LooseBilboard);
 
@@ -270,9 +276,16 @@ public class GameManager : MonoBehaviour
 
         Destroy(PortalRef);
 
-        Instantiate(LoadingBillboardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        //Instantiate(LoadingBillboardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+
+        LoadingBillboardRef = Instantiate(LoadingBillboardPrefab);
+
+        yield return new WaitUntil(() => operation.isDone);
+        
 
         yield return null;
     }

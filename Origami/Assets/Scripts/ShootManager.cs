@@ -9,6 +9,8 @@ public class ShootManager : MonoBehaviour
 
     public AudioClip ShootSound;
 
+    public bool Enabled;
+
     /*public float ShootingRate = 0.25f;
     private float shootCooldown;*/
 
@@ -18,14 +20,20 @@ public class ShootManager : MonoBehaviour
         //shootCooldown = ShootingRate;
 
         GazeManager.Instance.subscribedComponents.Add(this);
+
+        Enabled = false;
     }
 
     void OnSelect()
     {
-        if (GazeManager.Instance.FocusedObject == null || GazeManager.Instance.FocusedObject.tag != "DontShootWhenTaped")
+        if (Enabled)
         {
-            Shoot();
+            if (GazeManager.Instance.FocusedObject == null || GazeManager.Instance.FocusedObject.tag != "DontShootWhenTaped")
+            {
+                Shoot();
+            }
         }
+        
     }
 
     void Shoot()
